@@ -1,12 +1,57 @@
 <h1>Who’s the impostor?</h1>
-<div>
-    <button [routerLink]="['/set-players-card']" routerLinkActive="active">Players</button>
-    <button [routerLink]="['/set-impostors-card']" routerLinkActive="active">Impostors</button>
-    <button [routerLink]="['/set-category-card']" routerLinkActive="active">Categories</button>
-</div>
-<div>
-    <button>Time limit</button>
-    <button [routerLink]="['/set-duration-card']" routerLinkActive="active">Duration</button>
-</div>
+
 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi dignissimos nemo facere consectetur qui, non sequi quis quod aspernatur adipisci optio hic ad distinctio iure repudiandae voluptatem quia explicabo mollitia.</p>
+
+
+<h3>Players</h3>
+<div>
+    @for (item of players; track $index) {
+    <p> {{item}} <button (click)="deletePlayer(item)">-</button> </p>
+}
+
+</div>
+<div>
+    @if (adding==true){
+        <div>
+            <input [(ngModel)]="name" type="text" id="name" name="name" required />
+        </div>
+    }
+    <br>
+    @if (adding==false){
+        <button (click)="add()">+ Add player</button>
+    }
+    @else{
+        <button (click)="addPlayer()">+</button>
+        <button (click)="add()">Cancel</button>
+    }
+</div>
+
+<div>
+    <h3>Impostors</h3>
+    <label for="numeros">Elige un número:</label>
+    <select id="numeros">
+        @if (players.length<=6){
+            <option value="1">1</option>
+        }
+        @if (players.length<=9){
+            <option value="1">1</option>
+            <option value="2">2</option>
+        }
+        @if (players.length<=12){
+            <option value="2">2</option>
+            <option value="3">3</option>
+        }
+        @if (players.length<=15){
+            <option value="3">3</option>
+        }
+        @if (players.length>=16){
+            <option value="3">3</option>
+            <option value="4">4</option>
+        }
+    </select>
+</div>
+
 <button>Start the game!</button>
+
+
+
