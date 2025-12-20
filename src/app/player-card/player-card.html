@@ -1,5 +1,11 @@
 <div>
     <button> {{player}} </button>
-    <p>Rol: {{role}} </p>
-    <p> Cantidad de impostores: {{impostors}} </p>
+    <p>Eres: {{role}} </p>
+    @if (role=="Impostor") {
+        <br>
+    }
+    @else {
+        <p>La palabra es: {{randomWord}}</p>
+    
+    }
 </div>

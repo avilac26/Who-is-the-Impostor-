@@ -35,21 +35,6 @@
             <option value="2" [disabled]="players.length <=5">2</option>
             <option value="3" [disabled]="players.length <=10">3</option>
         </select>
-        <p>Impostores: {{impostors}} </p>
-    </div>
-    <div>
-        <h3>Categorías</h3>
-        <label for="Categories">Selecciona una categoría:</label>
-        <select id="Categories">
-            <option value="animals">Animales</option>
-            <option value="fruits">Frutas</option>
-            <option value="colors">Colores</option>
-            <option value="verbs">Verbos</option>
-            <option value="nouns">Sustantivos</option>
-            <option value="adjectives">Adjetivos</option>
-            <option value="sports">Deportes</option>
-            <option value="general">General</option>
-        </select>
     </div>
     <button (click)="startGame()">¡Empezar el juego!</button>
 } 
@@ -58,12 +43,14 @@
     <div>
         @if (players.length > 0){
             <p>  </p>
-            <app-player-card [player]="players[currentIndex]" [role]="shuffledRoles[currentIndex]" [impostors]="impostors" ></app-player-card>
+            <app-player-card [player]="players[currentIndex]" [role]="shuffledRoles[currentIndex]" [randomWord]="randomWord[0]"></app-player-card>
+            <p>Jugador {{currentIndex+1}} de {{players.length}}</p>
         <div>
             <button (click)="prevPlayer()" [disabled]="currentIndex === 0">Anterior</button>
             <button (click)="nextPlayer()" [disabled]="currentIndex === players.length - 1">Siguiente</button>
         </div>
-        <p>Jugador {{currentIndex+1}} de {{players.length}}</p>
+        <p> Cantidad de impostores: {{impostors}} </p>
+        
         }
         @else {
             <p>No hay jugadores</p>

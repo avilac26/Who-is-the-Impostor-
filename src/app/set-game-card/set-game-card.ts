@@ -3,10 +3,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PlayerCard } from '../player-card/player-card';
 import _ from 'lodash';
+import { HttpClient } from '@angular/common/http';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-set-game-card',
-  imports: [RouterLink, RouterLinkActive, FormsModule, PlayerCard],
+  imports: [RouterLink, RouterLinkActive, FormsModule, PlayerCard, NgClass],
   templateUrl: './set-game-card.html',
   styleUrl: './set-game-card.css',
 })
@@ -28,9 +30,15 @@ export class SetGameCard {
   roles:string[]=[];
   shuffledRoles: string[]=[];
 
+  // Random word
+  randomWord:any=null;
+
+  constructor(private api: HttpClient) {}
+
   startGame(){
-    this.setImpostorsMembers()
+    this.setImpostorsMembers();
     this.shuffleRoles();
+    this.getData();
     this.setting =! this.setting;
   }
 
@@ -82,6 +90,12 @@ export class SetGameCard {
     shuffleRoles(){
       this.shuffledRoles = _.shuffle(this.roles);
     }
+
+    getData(){
+    this.api.get("https://random-word-api.herokuapp.com/word?lang=es").subscribe((data:any)=>{
+    this.randomWord=data;
+    })
+  }
 
 }
 
