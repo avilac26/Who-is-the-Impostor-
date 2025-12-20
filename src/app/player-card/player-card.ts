@@ -9,5 +9,6 @@ import { Input } from '@angular/core';
 })
 export class PlayerCard {
   @Input() player!: string;
-
+  @Input() impostors!:number;
+  @Input() role!: string;
 }

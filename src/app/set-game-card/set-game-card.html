@@ -29,24 +29,13 @@
 
     <div>
         <h3>Impostores</h3>
-        <label for="impostors">Seleccione el número de impostores:</label>
-        <select id="impostors">
-            @if (players.length <=5){
-                <option value="1">1</option>
-                <option value="2" disabled>2</option>
-                <option value="3" disabled>3</option>
-            }
-            @else if (players.length <=10){
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3" disabled>3</option>
-            }
-            @else if (players.length <=15){
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            }
+        <label for="impostors">Selecciona la cantidad de impostores:</label>
+        <select id="impostors" [(ngModel)]="impostors">
+            <option value="1">1</option>
+            <option value="2" [disabled]="players.length <=5">2</option>
+            <option value="3" [disabled]="players.length <=10">3</option>
         </select>
+        <p>Impostores: {{impostors}} </p>
     </div>
     <div>
         <h3>Categorías</h3>
@@ -62,20 +51,19 @@
             <option value="general">General</option>
         </select>
     </div>
-
     <button (click)="startGame()">¡Empezar el juego!</button>
-
-}
+} 
 
 @else {
     <div>
         @if (players.length > 0){
-            <app-player-card [player]="players[currentIndex]"></app-player-card>
+            <p>  </p>
+            <app-player-card [player]="players[currentIndex]" [role]="shuffledRoles[currentIndex]" [impostors]="impostors" ></app-player-card>
         <div>
             <button (click)="prevPlayer()" [disabled]="currentIndex === 0">Anterior</button>
             <button (click)="nextPlayer()" [disabled]="currentIndex === players.length - 1">Siguiente</button>
         </div>
-        <p>Jugador {{currentIndex+1}} de {{players.length}} </p>
+        <p>Jugador {{currentIndex+1}} de {{players.length}}</p>
         }
         @else {
             <p>No hay jugadores</p>

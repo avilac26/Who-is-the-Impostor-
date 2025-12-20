@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PlayerCard } from '../player-card/player-card';
-
-
-
+import _ from 'lodash';
 
 @Component({
   selector: 'app-set-game-card',
@@ -25,7 +23,14 @@ export class SetGameCard {
   currentIndex: number = 0;
 
 
+  // Impostors and members
+  impostors:number=1;
+  roles:string[]=[];
+  shuffledRoles: string[]=[];
+
   startGame(){
+    this.setImpostorsMembers()
+    this.shuffleRoles();
     this.setting =! this.setting;
   }
 
@@ -64,6 +69,19 @@ export class SetGameCard {
       this.currentIndex = this.currentIndex - 1;
     }
   }
+
+  setImpostorsMembers(){
+      for (let i =0; i < this.impostors; i++){
+        this.roles.push("Impostor");
+      }
+      for (let i =0; i < this.players.length - this.impostors; i++){
+        this.roles.push("Tripulante");
+      }
+    }
+  
+    shuffleRoles(){
+      this.shuffledRoles = _.shuffle(this.roles);
+    }
 
 }
 
