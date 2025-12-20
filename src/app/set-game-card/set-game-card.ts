@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class SetGameCard {
 
+  setting:boolean = true;
+
   // Players var
   name:string='';
   players:string[]=[];
