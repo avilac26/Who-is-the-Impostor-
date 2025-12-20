@@ -19,6 +19,9 @@ export class SetGameCard {
   adding:boolean = false;
 
 
+  startGame(){
+    this.setting =! this.setting;
+  }
 
   // Players logic
 

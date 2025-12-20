@@ -1,9 +1,9 @@
-<h1>Who’s the impostor?</h1>
+<h1>¿Quien es el impostor?</h1>
 
 @if (setting==true){
 
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi dignissimos nemo facere consectetur qui, non sequi quis quod aspernatur adipisci optio hic ad distinctio iure repudiandae voluptatem quia explicabo mollitia.</p>
-    <h3>Players</h3>
+    <h3>Jugadores</h3>
     <div>
         @for (item of players; track $index) {
         <p> {{item}} <button (click)="deletePlayer(item)">-</button> </p>
@@ -18,41 +18,52 @@
         }
         <br>
         @if (adding==false){
-            <button (click)="add()">+ Add player</button>
+            <button (click)="add()">+ Añadir Jugador</button>
         }
         @else{
             <button (click)="addPlayer()">+</button>
-            <button (click)="add()">Cancel</button>
+            <button (click)="add()">Cancelar</button>
         }
         <p> {{players.length}} </p>
     </div>
 
     <div>
-        <h3>Impostors</h3>
-        <label for="impostors">Select the number of impostors:</label>
+        <h3>Impostores</h3>
+        <label for="impostors">Seleccione el número de impostores:</label>
         <select id="impostors">
             @if (players.length <=5){
                 <option value="1">1</option>
+                <option value="2" disabled>2</option>
+                <option value="3" disabled>3</option>
             }
             @else if (players.length <=10){
                 <option value="1">1</option>
-                <option value="1">2</option>
+                <option value="2">2</option>
+                <option value="3" disabled>3</option>
             }
             @else if (players.length <=15){
-                <option value="1">2</option>
-                <option value="1">3</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
             }
         </select>
     </div>
     <div>
-        <h3>Categories</h3>
-        <label for="Categories">Select a category:</label>
+        <h3>Categorias</h3>
+        <label for="Categories">Selecciona una categoría:</label>
         <select id="Categories">
-            
+            <option value="animals">Animales</option>
+            <option value="fruits">Frutas</option>
+            <option value="colors">Colores</option>
+            <option value="verbs">Verbos</option>
+            <option value="nouns">Sustantivos</option>
+            <option value="adjectives">Adjetivos</option>
+            <option value="sports">Deportes</option>
+            <option value="general">General</option>
         </select>
     </div>
 
-    <button>Start the game!</button>
+    <button (click)="startGame()">¡Empezar el juego!</button>
 
 }
 
