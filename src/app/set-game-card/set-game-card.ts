@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { PlayerCard } from '../player-card/player-card';
+
+
 
 
 @Component({
   selector: 'app-set-game-card',
-  imports: [RouterLink, RouterLinkActive, FormsModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, PlayerCard],
   templateUrl: './set-game-card.html',
   styleUrl: './set-game-card.css',
 })
@@ -17,6 +20,9 @@ export class SetGameCard {
   name:string='';
   players:string[]=[];
   adding:boolean = false;
+
+  //Player card index
+  currentIndex: number = 0;
 
 
   startGame(){
@@ -47,4 +53,18 @@ export class SetGameCard {
     localStorage.setItem('players', JSON.stringify(this.players));
   }
 
+  nextPlayer(){
+    if(this.currentIndex < this.players.length -1){
+      this.currentIndex = this.currentIndex + 1;
+    }
+    }
+
+  prevPlayer() {
+    if(this.currentIndex > 0){
+      this.currentIndex = this.currentIndex - 1;
+    }
+  }
+
 }
+
+
