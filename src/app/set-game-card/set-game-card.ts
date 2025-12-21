@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PlayerCard } from '../player-card/player-card';
 import _ from 'lodash';
 import { HttpClient } from '@angular/common/http';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-set-game-card',
-  imports: [RouterLink, RouterLinkActive, FormsModule, PlayerCard, NgClass],
+  imports: [FormsModule, PlayerCard],
   templateUrl: './set-game-card.html',
   styleUrl: './set-game-card.css',
 })
