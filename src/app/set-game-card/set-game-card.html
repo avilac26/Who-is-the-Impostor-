@@ -41,6 +41,7 @@
 
 @else {
     <div>
+        <button (click)="resetGame()">Atrás</button>
         @if (players.length > 0){
             <p>  </p>
             <app-player-card [player]="players[currentIndex]" [role]="shuffledRoles[currentIndex]" [randomWord]="randomWord[0]"></app-player-card>

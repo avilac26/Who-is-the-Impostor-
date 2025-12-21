@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 
 @Component({
   selector: 'app-player-card',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive ],
   templateUrl: './player-card.html',
   styleUrl: './player-card.css',
 })

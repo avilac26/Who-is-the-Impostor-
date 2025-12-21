@@ -24,7 +24,6 @@ export class SetGameCard {
   //Player card index
   currentIndex: number = 0;
 
-
   // Impostors and members
   impostors:number=1;
   roles:string[]=[];
@@ -40,6 +39,14 @@ export class SetGameCard {
     this.shuffleRoles();
     this.getData();
     this.setting =! this.setting;
+  }
+
+  resetGame(){
+    this.setting =! this.setting;
+    this.currentIndex = 0;
+    this.roles = []; 
+    this.shuffledRoles = []; 
+    
   }
 
   // Players logic
@@ -64,6 +71,13 @@ export class SetGameCard {
     let index = this.players.indexOf(player);
     this.players.splice(index, 1);
     localStorage.setItem('players', JSON.stringify(this.players));
+    // This is for being able to save the qty of impostors after resetGame() and set them accordingly
+    if ((this.players.length > 5 && this.players.length <= 10) && (this.impostors = 3)){
+      this.impostors = 2;
+    }
+    else if (( this.players.length <= 5) && (this.impostors = 2)){
+      this.impostors = 1;
+    }
   }
 
   nextPlayer(){
